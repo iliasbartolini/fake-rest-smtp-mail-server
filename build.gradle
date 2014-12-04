@@ -1,0 +1,66 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+    dependencies {
+        classpath 'org.springframework.boot:spring-boot-gradle-plugin:1.1.5.RELEASE'
+        classpath 'org.springframework:springloaded:1.2.0.RELEASE'
+        classpath "org.jfrog.buildinfo:build-info-extractor-gradle:3.0.1"
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
+apply plugin: 'com.jfrog.artifactory'
+
+jar {
+    baseName = 'FakeRestSmtpMailServer'
+    version = '0.1.0'
+}
+
+idea {
+    module {
+        inheritOutputDirs = false
+        outputDir = file("$buildDir/classes/main/")
+    }
+}
+
+repositories {
+    mavenCentral()
+    jcenter {
+        artifactUrls = ["http://oss.jfrog.org/artifactory/oss-release-local"]
+    }
+
+}
+
+dependencies {
+    compile('org.springframework.boot:spring-boot-starter-web')
+    compile('org.springframework.boot:spring-boot-starter-actuator')
+    compile('org.springframework.boot:spring-boot-starter-jetty')
+    compile('org.slf4j:slf4j-site:1.7.5')
+    compile('com.fasterxml.jackson.datatype:jackson-datatype-joda:2.4.3')
+    compile('org.projectlombok:lombok:1.14.8')
+    compile('org.json:json:20140107')
+    compile('com.google.guava:guava:18.0')
+    compile('org.subethamail:subethasmtp:3.1.7')
+
+    testCompile('junit:junit')
+}
+
+test {
+    def activeProfile = System.getenv("spring_profiles_active")
+    if(activeProfile == null || activeProfile == ""){
+        systemProperties 'spring.profiles.active': 'test'
+    }
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.0'
+}
+
+clean{
+    delete "data"
+    delete "build"
+}
