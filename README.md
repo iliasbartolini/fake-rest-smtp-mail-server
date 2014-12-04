@@ -5,12 +5,12 @@ A stub SMTP mail server for tests purposes based on subethamail. Exposes an SMTP
 
 Build:
 ```
-> ./gradlew build                                                                                                                                         {22:49}[1.9.3]~ ➭ telnet localhost 2525                       
+> ./gradlew build
 ```
 
 Run executable:
 ```
-> ./gradlew build                                                                                                                                         {22:49}[1.9.3]~ ➭ telnet localhost 2525                       
+> ./gradlew build
 ```
 
 Example
@@ -19,7 +19,7 @@ Example
 Querying the HTTP interface, mail queue is empty on startup
 ```
 > curl http://127.0.0.1:2526/fakemail/all
-[]%                                                                                                                                         {22:49}[1.9.3]~ ➭ telnet localhost 2525                       
+[]%
 ```
 
 Sending emails via SMTP
@@ -46,7 +46,8 @@ Whatever you do will be insignificant, but it is very important that you do it
 250 Ok
 QUIT
 221 Bye
-Connection closed by foreign host.```
+Connection closed by foreign host.
+```
 
 
 Now the mail queues shows the message received
@@ -57,9 +58,9 @@ Now the mail queues shows the message received
     "from":"ilias.bartolini@example.com",
     "to":"mahatma.gandhi@example.com",
     "subject":"An important advice",
-    "content":"Whatever you do will be insignificant, but it is very important that you do it\r\n"}]%
+    "content":"Whatever you do will be insignificant, but it is very important that you do it\r\n"
   }
-]
+]%
 ```
 
 The mail queue can be cleared via HTTP POST
