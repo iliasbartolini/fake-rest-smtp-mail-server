@@ -23,7 +23,7 @@ TODO
 Example
 -------
 
-Querying the HTTP interface, mail queue is empty on startup
+Querying the HTTP interface, mail queue is empty on startup and never persisted
 ```
 > curl http://127.0.0.1:2526/fakemail/all
 []%
@@ -57,7 +57,7 @@ Connection closed by foreign host.
 ```
 
 
-Now the mail queues shows the message received
+Now the mail queue shows the message received
 ```
 >curl http://127.0.0.1:2526/fakemail/all
 [
@@ -70,7 +70,7 @@ Now the mail queues shows the message received
 ]%
 ```
 
-You can filter results using regular expressions with the 'from' and 'to' parameters
+You can filter results using Java regular expressions with the 'from' and 'to' parameters
 ```
 >curl 'http://127.0.0.1:2526/fakemail/alll?from=^ilias.bartolini@.*'
 >curl 'http://127.0.0.1:2526/fakemail/all?to=.*@example.com$'
