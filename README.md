@@ -10,8 +10,15 @@ Build:
 
 Run executable:
 ```
-> ./gradlew build
+> java -jar build/libs/FakeRestSmtpMailServer-0.1.0.jar
 ```
+
+TODO
+-------
+- Support inspection of more complex mail formats (attachments, mime, etc.)
+- Create packages for distributions
+- Add a simple HTML / Javascript page to make it human readable
+- Filter by date time
 
 Example
 -------
@@ -61,6 +68,12 @@ Now the mail queues shows the message received
     "content":"Whatever you do will be insignificant, but it is very important that you do it\r\n"
   }
 ]%
+```
+
+You can filter results using regular expressions with the 'from' and 'to' parameters
+```
+>curl 'http://127.0.0.1:2526/fakemail/alll?from=^ilias.bartolini@.*'
+>curl 'http://127.0.0.1:2526/fakemail/all?to=.*@example.com$'
 ```
 
 The mail queue can be cleared via HTTP POST

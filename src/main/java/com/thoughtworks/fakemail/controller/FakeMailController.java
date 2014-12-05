@@ -29,8 +29,8 @@ public class FakeMailController {
                             message.getMimeMessage().getContent().toString())
             );
         }
-        if(from != null) returnMailMessages.removeIf(m -> !m.from.equals(from));
-        if(to != null) returnMailMessages.removeIf(m -> !m.to.equals(to));
+        if(from != null) returnMailMessages.removeIf(m -> !m.from.matches(from));
+        if(to != null) returnMailMessages.removeIf(m -> !m.to.matches(to));
         return returnMailMessages;
     }
 
